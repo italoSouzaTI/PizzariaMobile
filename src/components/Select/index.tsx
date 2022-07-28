@@ -3,17 +3,21 @@ import { TouchableOpacityProps } from 'react-native';
 
 import {
     SelectInput,
-    SelectInputText
+    SelectInputText,
+    Icon
 } from './styles';
 
 interface ISelectInput extends TouchableOpacityProps {
-    label: string
+    label?: string | object
 }
 
 const Select: React.FC<ISelectInput> = ({ label, ...rest }) => {
     return (
         <SelectInput {...rest}>
-            <SelectInputText>{label}</SelectInputText>
+            <SelectInputText>{label ?? 'Selecione'}</SelectInputText>
+            <Icon
+                name="caretdown"
+            />
         </SelectInput>
     );
 }

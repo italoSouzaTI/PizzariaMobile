@@ -1,6 +1,7 @@
 import React, { useState, Context, createContext, ReactNode, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { api } from '../service/api'
+import { Alert } from 'react-native'
 
 type AuthContentData = {
     user: UserProps,
@@ -64,7 +65,7 @@ export function AuthProvider ({ children }: AuthProviderProps) {
     async function signIn ({ email, password }: SignInProps) {
 
         try {
-            console.log(email, typeof password)
+
             setLoadingAuth(true);
             const response = await api.post('/session', { email, password });
 
@@ -84,7 +85,7 @@ export function AuthProvider ({ children }: AuthProviderProps) {
                 token
             })
         } catch (error) {
-            console.log('Érro ao acessar', error)
+            Alert.alert('Atenção', 'Não foi possivel acessar a conta')
         } finally {
             setLoadingAuth(false);
         }
