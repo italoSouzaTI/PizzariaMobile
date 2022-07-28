@@ -1,18 +1,29 @@
 import React from 'react';
-import { TouchableOpacityProps } from 'react-native';
+import { TouchableOpacityProps, ActivityIndicator } from 'react-native';
 import { Container, Btntext } from './styles';
+import GlobalColor from '../../../global'
 
 interface IButton {
-    label: string
+    label: string;
+    loading: boolean;
 }
 type Props = TouchableOpacityProps
-const Button: React.FC<IButton> = ({ label }, ...rest: Props) => {
+const Button: React.FC<IButton> = ({ label, loading = false, ...rest }: Props) => {
     return (
         <Container {...rest}>
             <Btntext>
-                {label}
+                {loading ? (
+                    <>
+                        <ActivityIndicator size={25} color={GlobalColor.white} />
+                    </>
+                ) : (
+                    <>
+                        {label}
+                    </>
+                )}
+
             </Btntext>
-        </Container>
+        </Container >
     );
 }
 

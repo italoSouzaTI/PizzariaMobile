@@ -6,11 +6,7 @@ import { InputDefault } from './styles';
 
 type Props = TextInputProps;
 
-interface IInput {
-
-}
-
-const Input: React.FC<IInput> = ({ ...rest }: Props) => {
+const Input: React.FC = ({ ...rest }: Props) => {
     return (
         <InputDefault {...rest}
             placeholderTextColor={GlobalColor.placeholder}

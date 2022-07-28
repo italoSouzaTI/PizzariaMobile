@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import AppRoutes from './app.routes';
 import AuthRoutes from './auth.routes';
 import GlobalColor from '../../global'
 
+import { AuthContext } from '../contexts/AuthContext'
+
 const routes: React.FC = () => {
 
-    const isAuthenticated = false;
-    const loading = false;
+    const { isAuthenticated, loading } = useContext(AuthContext);
 
     if (loading) {
         return (
