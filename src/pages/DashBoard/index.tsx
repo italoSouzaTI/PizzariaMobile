@@ -3,15 +3,24 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import { Container, Titulo } from './styles';
-import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { StackParamsList } from '../../routes/app.routes'
+
+
 
 const DashBoard: React.FC = () => {
-    const [number, setNumber] = useState<string>('')
+    const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>();
+    const [number, setNumber] = useState<string>('');
 
     const openOrder = () => {
         if (number === '') {
             return;
         }
+
+        navigation.navigate('Order', {
+            number, order_id: 'dasdasdsa'
+        })
     }
     return (
         <Container>

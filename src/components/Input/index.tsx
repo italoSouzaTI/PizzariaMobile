@@ -4,11 +4,14 @@ import GlobalColor from '../../../global'
 
 import { InputDefault } from './styles';
 
-type Props = TextInputProps;
+interface IPropsInput extends TextInputProps {
+    width: string
+}
 
-const Input: React.FC = ({ ...rest }: Props) => {
+const Input: React.FC<IPropsInput> = ({ width, ...rest }) => {
     return (
         <InputDefault {...rest}
+            width={width}
             placeholderTextColor={GlobalColor.placeholder}
         />
     );

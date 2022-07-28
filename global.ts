@@ -6,6 +6,8 @@ const colors = {
     placeholder: '#f0f0f0',
     btn_background: '#3FFFA3',
     btn_text: '#101026',
+    red: '#ff3f4b',
+    blue: '#3FD1FF'
 }
 
 export default colors;
