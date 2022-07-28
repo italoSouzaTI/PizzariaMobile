@@ -5,7 +5,7 @@ import GlobalColor from '../../../global'
 
 interface IButton {
     label: string;
-    loading: boolean;
+    loading?: boolean;
 }
 type Props = TouchableOpacityProps
 const Button: React.FC<IButton> = ({ label, loading = false, ...rest }: Props) => {

@@ -1,19 +1,36 @@
-import React, { useContext } from 'react';
-import { View, Text, Button } from 'react-native';
-import { AuthContext } from '../../contexts/AuthContext'
+import React, { useState } from 'react';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
-// import { Container } from './styles';
+import { Container, Titulo } from './styles';
+import { Alert } from 'react-native';
 
 const DashBoard: React.FC = () => {
-    const { signOut } = useContext(AuthContext);
+    const [number, setNumber] = useState<string>('')
+
+    const openOrder = () => {
+        if (number === '') {
+            return;
+        }
+    }
     return (
-        <View>
-            <Text>DashBoard</Text>
-            <Button
-                onPress={signOut}
-                title='Sair do app'
+        <Container>
+            <Titulo>Novo pedido</Titulo>
+            <Input
+                style={{
+                    textAlign: 'center',
+                    fontSize: 22,
+                }}
+                value={number}
+                onChangeText={setNumber}
+                keyboardType="numeric"
+                placeholder="Numero da mesa"
             />
-        </View>
+            <Button
+                onPress={openOrder}
+                label='Abrir mesa'
+            />
+        </Container>
     );
 }
 
