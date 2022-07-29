@@ -1,14 +1,15 @@
 import React from 'react';
 import { TouchableOpacityProps, ActivityIndicator } from 'react-native';
-import { Container, Btntext } from './styles';
 import GlobalColor from '../../../global'
+import { Container, Btntext, Icon } from './styles';
 
 interface IButton {
     label: string;
     loading?: boolean;
+    icon?: string
 }
 type Props = TouchableOpacityProps
-const Button: React.FC<IButton> = ({ label, loading = false, ...rest }: Props) => {
+const Button: React.FC<IButton> = ({ icon, label, loading = false, ...rest }: Props) => {
     return (
         <Container {...rest}>
             <Btntext>
@@ -23,10 +24,17 @@ const Button: React.FC<IButton> = ({ label, loading = false, ...rest }: Props) =
                 ) : (
                     <>
                         {label}
+
                     </>
                 )}
 
             </Btntext>
+            {icon && (
+
+                <Icon
+                    name="shopping-cart"
+                />
+            )}
         </Container >
     );
 }

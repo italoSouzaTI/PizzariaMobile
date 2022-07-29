@@ -22,7 +22,6 @@ const ListItem: React.FC<IListemProps> = ({ data, deleteItem }) => {
     }
     return (
         <>
-            {console.log(data)}
             {data && (
                 <Container>
                     <Label>{data?.amount} - {data?.name}</Label>
