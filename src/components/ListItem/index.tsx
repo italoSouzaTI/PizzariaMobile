@@ -21,15 +21,21 @@ const ListItem: React.FC<IListemProps> = ({ data, deleteItem }) => {
         deleteItem(data.id)
     }
     return (
-        <Container>
-            <Label>{data?.amount} - {data?.name}</Label>
-            <BtnTrash
-                onPress={handleDeleteItem}
-            >
-                <Icon
-                    name="trash-2" />
-            </BtnTrash>
-        </Container>
+        <>
+            {console.log(data)}
+            {data && (
+                <Container>
+                    <Label>{data?.amount} - {data?.name}</Label>
+                    <BtnTrash
+                        onPress={handleDeleteItem}
+                    >
+                        <Icon
+                            name="trash-2" />
+                    </BtnTrash>
+                </Container>
+            )}
+        </>
+
     );
 }
 

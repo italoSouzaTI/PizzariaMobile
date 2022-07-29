@@ -162,7 +162,6 @@ const Order: React.FC = () => {
                 name: productsSelected?.name as string,
                 amount: amount
             }
-            console.log('handleAdd', data)
             setItemList([...itemsList, data]);
         } catch (error) {
             Alert.alert('Atenção', 'Não foi possivel adiconar a lista');
@@ -171,13 +170,14 @@ const Order: React.FC = () => {
             setLoadingAdd(false);
         }
     }
-    const handleDeleteItem = async (item_id: string) => {
+    async function handleDeleteItem (item_id: string) {
         try {
             const response = await api.delete('/order/remove', {
                 params: {
                     item_id: item_id
                 }
             });
+            console.log(response)
             const cloneLista = itemsList.slice();
             let newArray = cloneLista.filter(item => item.id != item_id);
             setItemList(newArray)
