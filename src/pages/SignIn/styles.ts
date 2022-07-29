@@ -5,7 +5,7 @@ export const Container = styled.View`
   flex:1;
   justify-content:center;
   align-items:center;
-  background: ${GlobalColor.backgroundColor}
+  background: ${GlobalColor.backgroundColor};
 `;
 export const Logo = styled.Image`
     margin-bottom:18px;

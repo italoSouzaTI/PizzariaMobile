@@ -14,7 +14,11 @@ const Button: React.FC<IButton> = ({ label, loading = false, ...rest }: Props) =
             <Btntext>
                 {loading ? (
                     <>
-                        <ActivityIndicator size={25} color={GlobalColor.white} />
+                        <ActivityIndicator
+                            size={25}
+                            color={GlobalColor.white}
+                            animating={loading}
+                        />
                     </>
                 ) : (
                     <>
