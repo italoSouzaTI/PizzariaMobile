@@ -8,6 +8,9 @@ import ListItem from '../../components/ListItem';
 import { api } from '../../service/api';
 import GlobalColor from '../../../global'
 
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { StackParamsList } from '../../routes/app.routes';
+
 import {
     Container,
     ContainerOrder,
@@ -51,7 +54,7 @@ type OrderRouteProps = RouteProp<RouteDetailParams, 'Order'>;
 
 const Order: React.FC = () => {
     const route = useRoute<OrderRouteProps>();
-    const navigaton = useNavigation();
+    const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>();
     const [loading, setLoading] = useState<boolean>(false);
     const [loadingAdd, setLoadingAdd] = useState<boolean>(false);
 
@@ -122,10 +125,9 @@ const Order: React.FC = () => {
             setLoading(true);
             const response = await api.delete(`/order?order_id=${route.params.order_id}`);
             if (response.data) {
-                navigaton.goBack();
+                navigation.goBack();
             }
         } catch (error) {
-            console.log('handleCloserOrder falha', error);
             Alert.alert('Atenção', 'Não foi possível excluir a mesa');
         } finally {
             setLoading(false);
@@ -165,7 +167,6 @@ const Order: React.FC = () => {
             setItemList([...itemsList, data]);
         } catch (error) {
             Alert.alert('Atenção', 'Não foi possivel adiconar a lista');
-            console.log(error)
         } finally {
             setLoadingAdd(false);
         }
@@ -177,7 +178,6 @@ const Order: React.FC = () => {
                     item_id: item_id
                 }
             });
-            console.log(response)
             const cloneLista = itemsList.slice();
             let newArray = cloneLista.filter(item => item.id != item_id);
             setItemList(newArray)
@@ -187,6 +187,12 @@ const Order: React.FC = () => {
         } finally {
 
         }
+    }
+    const handleFinishOrder = () => {
+        navigation.navigate('FinishOrder', {
+            number: route.params?.number,
+            order_id: route.params?.order_id,
+        })
     }
 
     return (
@@ -273,9 +279,9 @@ const Order: React.FC = () => {
                             opacity: itemsList.length === 0 ? 0.3 : 1
                         }}
                         disabled={itemsList.length === 0}
+                        onPress={handleFinishOrder}
                     >
-                        <ButtonProgressText>
-                            Avançar</ButtonProgressText>
+                        <ButtonProgressText>Avançar</ButtonProgressText>
                     </ButtonProgress>
 
 
